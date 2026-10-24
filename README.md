@@ -4,6 +4,8 @@ A Home Assistant dashboard card that looks and works like the TCL Google TV voic
 
 It is designed for TCL TVs first. Set `variant: google_tv` to use it with other Google TV and Android TV devices.
 
+<img src="https://raw.githubusercontent.com/EugenioSorbellini/tcl-google-tv-remote/main/docs/screenshot.png" alt="The remote card in a Home Assistant dashboard popup, with the TV Voice Bridge microphone in the centre" width="320">
+
 The card adapts between phone and desktop sizes (up to 400 px wide) and fits short phone screens such as 320 × 568 without scrolling. It works well inside a [Bubble Card](https://github.com/Clooos/Bubble-Card) popup.
 
 ## Requirements
