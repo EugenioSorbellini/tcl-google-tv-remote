@@ -21,3 +21,5 @@ jobs:
       - uses: hacs/action@main
         with:
           category: plugin
+          # Remove once the README has a screenshot.
+          ignore: images
