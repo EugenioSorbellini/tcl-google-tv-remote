@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 — unreleased
+## 0.1.0 — 2026-10-24
 
 - First standalone release, extracted from a Home Assistant installation's local TV remote card.
 - Physical TCL RC833A-style layout built on Universal Remote Card, with the layout, styles and actions built in.
