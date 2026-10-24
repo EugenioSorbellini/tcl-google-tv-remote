@@ -1,0 +1,11 @@
+{
+  "name": "tcl-google-tv-remote",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "test": "node tests/test_tcl_google_tv_remote.mjs",
+    "check": "node --check tcl-google-tv-remote.js && node tools/check-release.mjs"
+  }
+}
