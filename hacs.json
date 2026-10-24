@@ -1,5 +1,5 @@
 {
-  "name": "TCL Google TV Remote",
+  "name": "Remote Card for TCL Google TV",
   "filename": "tcl-google-tv-remote.js",
   "render_readme": true,
   "homeassistant": "2026.10.2"

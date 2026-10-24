@@ -138,4 +138,4 @@ for (const config of [{}, { remote_id: 'media_player.tv' }, { remote_id: 'remote
 }
 assert.deepEqual(Card.getStubConfig({ states: { 'light.a': {}, 'remote.tv': {} } }),
   { type: 'custom:tcl-google-tv-remote', remote_id: 'remote.tv' });
-console.log('TCL Google TV Remote: composition, optional microphone, TCL/Google TV variants, overrides, localization, races and validation passed.');
+console.log('Remote Card for TCL Google TV: composition, optional microphone, TCL/Google TV variants, overrides, localization, races and validation passed.');

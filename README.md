@@ -1,4 +1,4 @@
-# TCL Google TV Remote
+# Remote Card for TCL Google TV
 
 A Home Assistant dashboard card that looks and works like the TCL Google TV voice remote (RC833A): mute/power, a 0–9 keypad, the navigation wheel with OK, joined volume and channel rockers, Back/Home, Settings/Live TV, a central microphone, Netflix/Prime Video/Disney+/YouTube shortcuts, and a keyboard/playback row.
 
@@ -19,8 +19,8 @@ HACS cannot install dashboard-card dependencies automatically, so install Univer
 ## Installation with HACS
 
 1. In HACS, add `https://github.com/EugenioSorbellini/tcl-google-tv-remote` as a **custom repository**, category **Dashboard**.
-2. Download **TCL Google TV Remote**. HACS registers the dashboard resource.
-3. Refresh the browser, then add **TCL Google TV Remote** from the card picker or use the YAML below.
+2. Download **Remote Card for TCL Google TV**. HACS registers the dashboard resource.
+3. Refresh the browser, then add **Remote Card for TCL Google TV** from the card picker or use the YAML below.
 
 For a manual installation, copy `tcl-google-tv-remote.js` to `/config/www/` and add `/local/tcl-google-tv-remote.js` as a JavaScript module dashboard resource.
 
