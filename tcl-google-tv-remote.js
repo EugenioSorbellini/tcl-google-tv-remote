@@ -1,6 +1,6 @@
 // Remote Card for TCL Google TV: a physical-style remote for TCL Google TV built on Universal Remote Card.
 // The optional microphone is TV Voice Bridge's tv-voice-card; recording and delivery belong to it.
-export const VERSION = '0.1.1';
+export const VERSION = '0.1.2';
 
 const translations = {
   en: {

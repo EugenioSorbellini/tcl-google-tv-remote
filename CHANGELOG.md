@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.2 — 2026-10-24
 
 - Rename the card to "Remote Card for TCL Google TV" in HACS, the card picker and the README, so the name reads as compatibility rather than an official TCL or Google product. The card type, file name and repository are unchanged, so existing dashboards keep working.
 
