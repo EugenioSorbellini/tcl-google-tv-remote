@@ -12,7 +12,7 @@ The card adapts between phone and desktop sizes (up to 400 px wide) and fits sho
 
 - Home Assistant **2026.10.2 or later** with the **Android TV Remote** integration configured and paired.
 - [Universal Remote Card](https://github.com/Nerwyn/universal-remote-card) installed from HACS. This card provides the layout and styling; Universal Remote Card sends the commands.
-- Optional: [TV Voice Bridge](https://github.com/EugenioSorbellini/tv-voice-bridge) **v1.0.0 or later** (v1.2.2 or later recommended on Home Assistant 2026.10.3+) for the microphone button. Without it, the remote works and the microphone spot stays empty.
+- Optional: [TV Voice Bridge](https://github.com/EugenioSorbellini/tv-voice-bridge) for the microphone button. Without it, the remote works and the microphone spot stays empty.
 
 HACS cannot install dashboard-card dependencies automatically, so install Universal Remote Card first.
 

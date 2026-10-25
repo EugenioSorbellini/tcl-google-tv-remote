@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- README: drop the outdated TV Voice Bridge version notes from the requirements.
 - Add a README example that opens the remote in a Bubble Card popup.
 
 ## 0.1.3 — 2026-10-25
