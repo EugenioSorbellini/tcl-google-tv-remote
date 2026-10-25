@@ -354,6 +354,7 @@ function builtInActions(t, liveTvAction) {
   ];
 }
 
+const buttonNames = rows.flat();
 const entityPattern = domain => new RegExp(`^${domain}\\.[a-z0-9_]+$`);
 
 class TCLGoogleTVRemote extends HTMLElement {
@@ -377,8 +378,11 @@ class TCLGoogleTVRemote extends HTMLElement {
     if (config.media_player_id && !entityPattern('media_player').test(config.media_player_id)) {
       throw new Error('media_player_id must be a media_player entity.');
     }
-    if (config.variant && !(config.variant in liveTv)) {
+    if (config.variant && !Object.hasOwn(liveTv, config.variant)) {
       throw new Error('variant must be tcl or google_tv.');
+    }
+    if ('live_tv_source' in config && (typeof config.live_tv_source !== 'string' || !config.live_tv_source)) {
+      throw new Error('live_tv_source must be an app link, such as app://com.tcl.tv/tune.');
     }
     if (config.microphone_activation && !['hold', 'toggle'].includes(config.microphone_activation)) {
       throw new Error('microphone_activation must be hold or toggle.');
@@ -386,6 +390,10 @@ class TCLGoogleTVRemote extends HTMLElement {
     if (config.custom_actions && (!Array.isArray(config.custom_actions) ||
         config.custom_actions.some(action => typeof action?.name !== 'string'))) {
       throw new Error('custom_actions must be a list of actions, each with a name.');
+    }
+    const unknown = config.custom_actions?.find(action => !buttonNames.includes(action.name));
+    if (unknown) {
+      throw new Error(`custom_actions: ${unknown.name} is not a button. Use one of ${buttonNames.join(', ')}.`);
     }
     this._config = {
       ...config,
@@ -414,6 +422,9 @@ class TCLGoogleTVRemote extends HTMLElement {
     const actions = builtInActions(this._t(), this._config.live_tv_source
       ? { action: 'source', source: this._config.live_tv_source } : liveTv[this._config.variant])
       .map(action => overrides.get(action.name) || action);
+    // Buttons such as play_pause come from Universal Remote Card's defaults, so their overrides are added as well.
+    const builtIn = new Set(actions.map(action => action.name));
+    actions.push(...[...overrides.values()].filter(action => !builtIn.has(action.name)));
     return {
       type: 'custom:universal-remote-card',
       platform: 'Android TV',

@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Fix `custom_actions` overrides for `rewind`, `play_pause` and `fast_forward`, which were silently ignored.
+- A `custom_actions` entry with an unknown button name is now a configuration error instead of doing nothing.
+- `variant` no longer accepts JavaScript object keys such as `constructor`, and `live_tv_source` must be a non-empty link.
+
 ## 0.1.2 — 2026-10-24
 
 - Rename the card to "Remote Card for TCL Google TV" in HACS, the card picker and the README, so the name reads as compatibility rather than an official TCL or Google product. The card type, file name and repository are unchanged, so existing dashboards keep working.

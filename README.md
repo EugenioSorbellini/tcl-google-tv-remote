@@ -68,7 +68,7 @@ custom_actions:
       source: https://www.raiplay.it
 ```
 
-An override replaces the whole built-in button, including its icon and label. See Universal Remote Card's documentation for the action format.
+An override replaces the whole built-in button, including its icon and label. A name that isn't in the list above is reported as a configuration error. See Universal Remote Card's documentation for the action format.
 
 Keyboard input requires the Android TV Remote integration's IME option. App shortcuts and key behaviour depend on the TV and its installed apps.
 

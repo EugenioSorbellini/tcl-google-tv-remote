@@ -78,7 +78,10 @@ const voice = card._voice;
 card.setConfig({
   remote_id: 'remote.tv', media_player_id: 'media_player.tv', microphone_activation: 'toggle',
   variant: 'google_tv',
-  custom_actions: [{ type: 'button', name: 'netflix', icon: 'mdi:netflix', tap_action: { action: 'source', source: 'x://' } }],
+  custom_actions: [
+    { type: 'button', name: 'netflix', icon: 'mdi:netflix', tap_action: { action: 'source', source: 'x://' } },
+    { type: 'button', name: 'play_pause', icon: 'mdi:pause', tap_action: { action: 'key', key: 'MEDIA_PAUSE' } },
+  ],
 });
 assert.ok(voice.cancelled);
 await card._ready;
@@ -89,8 +92,10 @@ card.setConfig({ ...card._config, live_tv_source: 'app://example.tv/live' });
 await card._ready;
 await card._microphone;
 assert.deepEqual(action(card, 'tv').tap_action, { action: 'source', source: 'app://example.tv/live' });
+assert.deepEqual(action(card, 'tv').hold_action, { action: 'key', key: 'GUIDE' }, 'live_tv_source keeps the guide on hold.');
 assert.equal(action(card, 'netflix').icon, 'mdi:netflix', 'custom_actions replace built-ins by name.');
 assert.equal(card._remote.config.custom_actions.filter(item => item.name === 'netflix').length, 1);
+assert.equal(action(card, 'play_pause').icon, 'mdi:pause', 'Universal Remote Card default buttons can be overridden too.');
 assert.equal(card._voice.config.activation, 'toggle');
 
 // A language change rebuilds the accessible labels.
@@ -108,6 +113,13 @@ await card._ready;
 await tick();
 assert.equal(card.shell.children.length, 1);
 assert.equal(card._voice, undefined);
+
+// microphone: true is the same as leaving it out.
+card.setConfig({ remote_id: 'remote.tv', microphone: true });
+await card._ready;
+await card._microphone;
+assert.equal(card.shell.children.length, 2);
+assert.equal(card._voice.config.activation, 'hold');
 
 // An outdated microphone module is reported without breaking the remote.
 voiceVersion = undefined;
@@ -133,7 +145,11 @@ assert.equal(card._voice.config.entity, 'remote.new');
 assert.equal(card.shell.children.length, 2);
 
 for (const config of [{}, { remote_id: 'media_player.tv' }, { remote_id: 'remote.tv', media_player_id: 'remote.tv' },
-  { remote_id: 'remote.tv', microphone_activation: 'invalid' }, { remote_id: 'remote.tv', variant: 'roku' }, { remote_id: 'remote.tv', custom_actions: [{}] }]) {
+  { remote_id: 'remote.tv', microphone_activation: 'invalid' }, { remote_id: 'remote.tv', variant: 'roku' }, { remote_id: 'remote.tv', custom_actions: [{}] },
+  { remote_id: 'remote.tv', variant: 'constructor' }, { remote_id: 'remote.tv', variant: 'toString' },
+  { remote_id: 'remote.tv', live_tv_source: 42 }, { remote_id: 'remote.tv', live_tv_source: '' },
+  { remote_id: 'remote.tv', custom_actions: { name: 'netflix' } },
+  { remote_id: 'remote.tv', custom_actions: [{ name: 'netflx' }] }]) {
   assert.throws(() => card.setConfig(config));
 }
 assert.deepEqual(Card.getStubConfig({ states: { 'light.a': {}, 'remote.tv': {} } }),
