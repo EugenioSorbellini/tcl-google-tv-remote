@@ -72,6 +72,35 @@ An override replaces the whole built-in button, including its icon and label. A 
 
 Keyboard input requires the Android TV Remote integration's IME option. App shortcuts and key behaviour depend on the TV and its installed apps.
 
+### In a Bubble Card popup
+
+With [Bubble Card](https://github.com/Clooos/Bubble-Card) installed, put the remote in a popup and open it from any button that navigates to the popup's hash. This example was tested with Bubble Card v3.4.2:
+
+```yaml
+- type: button
+  name: Remote
+  icon: mdi:remote-tv
+  tap_action:
+    action: navigate
+    navigation_path: "#tv-remote"
+- type: custom:bubble-card
+  card_type: pop-up
+  hash: "#tv-remote"
+  name: Living room TV
+  icon: mdi:remote-tv
+  popup_mode: adaptive-dialog
+  popup_style: home-assistant
+  width_desktop: 520px
+  close_by_clicking_outside: true
+  slide_to_close: header
+  cards:
+    - type: custom:tcl-google-tv-remote
+      remote_id: remote.living_room_tv
+      media_player_id: media_player.living_room_tv
+```
+
+Both cards go in the same view's `cards` list. The popup options other than `card_type`, `hash` and `cards` are optional; see Bubble Card's documentation.
+
 ## Language
 
 Accessible button labels and card messages follow the Home Assistant user's language. English and Italian are included; other languages fall back to English. The microphone localizes itself.

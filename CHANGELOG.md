@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add a README example that opens the remote in a Bubble Card popup.
+
 ## 0.1.3 — 2026-10-25
 
 - Fix `custom_actions` overrides for `rewind`, `play_pause` and `fast_forward`, which were silently ignored.
