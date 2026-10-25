@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.3 — 2026-10-25
 
 - Fix `custom_actions` overrides for `rewind`, `play_pause` and `fast_forward`, which were silently ignored.
 - A `custom_actions` entry with an unknown button name is now a configuration error instead of doing nothing.
