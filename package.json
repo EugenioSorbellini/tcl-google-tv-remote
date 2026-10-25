@@ -6,6 +6,10 @@
   "engines": {"node": ">=22"},
   "scripts": {
     "test": "node tests/test_tcl_google_tv_remote.mjs",
-    "check": "node --check tcl-google-tv-remote.js && node tools/check-release.mjs"
+    "check": "node --check tcl-google-tv-remote.js && node tools/check-release.mjs",
+    "test:browser": "node tests/test_universal_remote_card.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.64.1"
   }
 }

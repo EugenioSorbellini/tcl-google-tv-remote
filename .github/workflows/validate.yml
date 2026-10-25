@@ -3,6 +3,9 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  schedule:
+    # Weekly, so a breaking Universal Remote Card change shows up without a push.
+    - cron: '0 6 * * 1'
 permissions:
   contents: read
 jobs:
@@ -14,6 +17,30 @@ jobs:
         with:
           node-version: '22'
       - run: npm run check && npm test
+  universal-remote-card:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The latest release users install, and main for changes before they ship.
+        urc: [latest, main]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium-headless-shell
+      - run: npm run test:browser
+        env:
+          URC_REF: ${{ matrix.urc }}
+          GITHUB_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshot-${{ matrix.urc }}
+          path: test-results/
   hacs:
     runs-on: ubuntu-latest
     steps:

@@ -81,9 +81,11 @@ Accessible button labels and card messages follow the Home Assistant user's lang
 ```sh
 npm run check
 npm test
+npm ci && npx playwright install chromium-headless-shell
+npm run test:browser
 ```
 
-The tests use a minimal DOM stand-in and do not need Home Assistant. Before a release, also check the card visually in a Home Assistant popup and full-page view at desktop and phone sizes.
+`npm test` uses a minimal DOM stand-in. `npm run test:browser` downloads Universal Remote Card (`URC_REF=latest` by default, or `main` or a release tag), renders the card on it in headless Chromium with a stand-in `hass`, and checks that every button is shown and sends the expected command. It saves a screenshot to `test-results/`. Neither needs Home Assistant. Before a release, also check the card visually in a Home Assistant popup and full-page view at desktop and phone sizes.
 
 To release, update `VERSION` in `tcl-google-tv-remote.js`, `package.json` and `CHANGELOG.md`, then publish a GitHub release tagged `vX.Y.Z`. The release workflow checks that the tag matches.
 

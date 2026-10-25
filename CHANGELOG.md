@@ -5,6 +5,7 @@
 - Fix `custom_actions` overrides for `rewind`, `play_pause` and `fast_forward`, which were silently ignored.
 - A `custom_actions` entry with an unknown button name is now a configuration error instead of doing nothing.
 - `variant` no longer accepts JavaScript object keys such as `constructor`, and `live_tv_source` must be a non-empty link.
+- CI renders the card on the real Universal Remote Card (latest release and main) in headless Chromium and presses its buttons, and repeats this weekly.
 
 ## 0.1.2 — 2026-10-24
 
