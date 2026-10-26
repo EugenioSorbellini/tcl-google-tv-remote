@@ -33,6 +33,7 @@ jobs:
           git diff --cached --quiet || { git commit -qm 'Update the coverage badge' && git push origin badges; }
   universal-remote-card:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
@@ -45,7 +46,12 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium-headless-shell
+      # The runner image already has the browser's libraries; --with-deps added slow apt downloads that sometimes hung.
+      - uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install chromium-headless-shell
       - run: npm run test:browser
         env:
           URC_REF: ${{ matrix.urc }}
