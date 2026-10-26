@@ -30,8 +30,6 @@ The card is up to 400 px wide and tightens on shorter phone screens, down to 320
 1. Click the button above, or in HACS add `https://github.com/EugenioSorbellini/tcl-google-tv-remote` as a custom repository (category **Dashboard**). Then download **Remote Card for TCL Google TV**.
 2. Refresh the browser and add the card from the card picker, or use the YAML below.
 
-For a manual installation, copy `tcl-google-tv-remote.js` to `/config/www/` and add `/local/tcl-google-tv-remote.js` as a JavaScript module dashboard resource.
-
 ## Configuration
 
 ```yaml
