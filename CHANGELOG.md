@@ -1,9 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.1.4 — 2026-10-26
 
-- README: drop the outdated TV Voice Bridge version notes from the requirements.
+- README: screenshots of the card at desktop and phone sizes, an "open in HACS" button and a coverage badge; shorter text, without the manual installation steps or the outdated TV Voice Bridge version notes.
 - Add a README example that opens the remote in a Bubble Card popup.
+- `npm run screenshots` regenerates the README size screenshots; `npm run coverage` measures unit-test coverage, published as the README badge from CI.
+- CI uses the Node 24 versions of the GitHub Actions.
+- No card changes.
 
 ## 0.1.3 — 2026-10-25
 
