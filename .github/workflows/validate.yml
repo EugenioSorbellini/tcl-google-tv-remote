@@ -15,8 +15,8 @@ jobs:
       # Pushes the coverage badge to the badges branch.
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
       - run: npm run check && npm run coverage
@@ -39,8 +39,8 @@ jobs:
         # The latest release users install, and main for changes before they ship.
         urc: [latest, main]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
           cache: npm
@@ -50,7 +50,7 @@ jobs:
         env:
           URC_REF: ${{ matrix.urc }}
           GITHUB_TOKEN: ${{ github.token }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: screenshot-${{ matrix.urc }}
@@ -58,7 +58,7 @@ jobs:
   hacs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: hacs/action@main
         with:
           category: plugin
