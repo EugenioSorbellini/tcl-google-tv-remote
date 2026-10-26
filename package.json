@@ -7,6 +7,7 @@
   "scripts": {
     "test": "node tests/test_tcl_google_tv_remote.mjs",
     "check": "node --check tcl-google-tv-remote.js && node tools/check-release.mjs",
+    "coverage": "node tools/coverage-badge.mjs",
     "test:browser": "node tests/test_universal_remote_card.mjs",
     "screenshots": "node tools/screenshots.mjs"
   },

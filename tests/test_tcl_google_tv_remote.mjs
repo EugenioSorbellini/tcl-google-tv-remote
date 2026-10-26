@@ -1,5 +1,4 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
 
 const waiting = new Map();
 let voiceVersion = 1;
@@ -40,8 +39,7 @@ globalThis.customElements = {
 globalThis.document = { createElement: name => new (registry.get(name) || Element)() };
 globalThis.setTimeout = callback => timers.push(callback);
 globalThis.clearTimeout = () => {};
-const source = await readFile(new URL('../tcl-google-tv-remote.js', import.meta.url), 'utf8');
-await import(`data:text/javascript,${encodeURIComponent(source)}`);
+await import('../tcl-google-tv-remote.js');
 const Card = registry.get('tcl-google-tv-remote');
 const tick = () => new Promise(resolve => setImmediate(resolve));
 const action = (card, name) => card._remote.config.custom_actions.find(item => item.name === name);

@@ -11,12 +11,26 @@ permissions:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    permissions:
+      # Pushes the coverage badge to the badges branch.
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm run check && npm test
+      - run: npm run check && npm run coverage
+      - name: Publish the coverage badge
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          cp coverage/badge.json "$RUNNER_TEMP/coverage.json"
+          if git fetch --depth=1 origin badges; then git switch badges; else git switch --orphan badges; fi
+          git rm -rq --ignore-unmatch .
+          cp "$RUNNER_TEMP/coverage.json" coverage.json
+          git add coverage.json
+          git diff --cached --quiet || { git commit -qm 'Update the coverage badge' && git push origin badges; }
   universal-remote-card:
     runs-on: ubuntu-latest
     strategy:

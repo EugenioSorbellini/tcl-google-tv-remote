@@ -1,5 +1,7 @@
 # Remote Card for TCL Google TV
 
+[![Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FEugenioSorbellini%2Ftcl-google-tv-remote%2Fbadges%2Fcoverage.json)](https://github.com/EugenioSorbellini/tcl-google-tv-remote/actions/workflows/validate.yml)
+
 A Home Assistant dashboard card that looks and works like the TCL Google TV voice remote (RC833A). It is designed for TCL TVs; set `variant: google_tv` for other Google TV and Android TV devices.
 
 <img src="https://raw.githubusercontent.com/EugenioSorbellini/tcl-google-tv-remote/main/docs/screenshot.png" alt="The remote card in a Home Assistant dashboard popup, with the TV Voice Bridge microphone in the centre" width="320">
@@ -104,12 +106,13 @@ Button labels and messages follow your Home Assistant language (English and Ital
 ```sh
 npm run check
 npm test
+npm run coverage
 npm ci && npx playwright install chromium-headless-shell
 npm run test:browser
 npm run screenshots
 ```
 
-`npm test` uses a minimal DOM stand-in. `npm run test:browser` renders the card on Universal Remote Card (`URC_REF=latest`, `main` or a release tag) in headless Chromium and checks every button's command. `npm run screenshots` updates the images in `docs/`. None of them need Home Assistant; before a release, also check the card in a real dashboard at desktop and phone sizes.
+`npm test` uses a minimal DOM stand-in; `npm run coverage` runs it with coverage for the README badge. `npm run test:browser` renders the card on Universal Remote Card (`URC_REF=latest`, `main` or a release tag) in headless Chromium and checks every button's command. `npm run screenshots` updates the images in `docs/`. None of them need Home Assistant; before a release, also check the card in a real dashboard at desktop and phone sizes.
 
 To release, update the version in `tcl-google-tv-remote.js`, `package.json` and `CHANGELOG.md`, then publish a GitHub release tagged `vX.Y.Z`.
 
